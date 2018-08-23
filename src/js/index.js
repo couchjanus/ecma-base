@@ -4,13 +4,17 @@ import './../sass/styles.scss';
 // window.jQuery = $;
 // window.$ = $;
 
-const product = {
-    id: 0,
-    name: "Cool Cat",
-    price: 177,
-    picture: "/images/cat1.jpg",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
-};
+import { makeProductItemJq, makeProductItem, createProduct } from './lib';
+
+import { data } from './data';
+
+// const product = {
+//     id: 0,
+//     name: "Cool Cat",
+//     price: 177,
+//     picture: "/images/cat1.jpg",
+//     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
+// };
 
 // for (let key in product) {
 //     console.log(key + ': ' + product.key);
@@ -58,80 +62,13 @@ const product = {
 // console.log(Object.keys(my_obj)); // консоль: ['foo']
         
 
-const data = [
-    {
-        id: 0,
-        name: "Cool Cat",
-        price: 177,
-        picture: "/images/cat1.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
-    },
-    {
-        id: 1,
-        name: "Black Cat",
-        price: 666,
-        picture: "/images/cat2.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
-    },
-    {
-        id: 2,
-        name: "Red Cat",
-        price: 555,
-        picture: "/images/cat3.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
-    },
-    {
-        id: 3,
-        name: "Blue Cat",
-        price: 444,
-        picture: "/images/cat4.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
-    },
-    {
-        id: 4,
-        name: "Green Cat",
-        price: 333,
-        picture: "/images/cat5.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
-    },
-    {
-        id: 5,
-        name: "Grey Cat",
-        price: 222,
-        picture: "/images/cat6.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
-    },
-    {
-        id: 6,
-        name: "Orange Cat",
-        price: 777,
-        picture: "/images/cat7.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
-    },
-    {
-        id: 7,
-        name: "Pretty Cat",
-        price: 888,
-        picture: "/images/cat8.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dignissimos, maxime ea excepturi veritatis itaque."
-    },
-    ];
     
     // const $productTemplate = document.getElementById("productItem").content;    
 
     // for (var i=0; i<Object.keys(data).length; i++){
     //     document.querySelector('.grid-layout').append(makeProductItem($productTemplate, data[i]).cloneNode(true));
     // }
-
-
-    function makeProductItemJq($template, product){
-        $template.find('.product-menu').attr('productId', product["id"]);
-        $template.find('.product-name').text(product.name);
-        $template.find('img').attr('src', product.picture);
-        $template.find('.product-price').text(product["price"]);
-        $template.find('.product-description').text( product["description"]);
-        return $template;
-}
+  
 
 // for (var i=0; i<Object.keys(data).length; i++){
 //     var $productTemplate = $($('#productItem').html());
@@ -177,67 +114,41 @@ const data = [
 
 
 
-function makeProductItem($template, product){
-    const keys = Object.keys(product);
-    keys.forEach(function(key) {
-        let selector = '.product-'+ key;
-        switch(key){
-            case 'id':
-                $template.find(selector).attr('productId', product[key]);
-                break;
-            case 'picture':
-                $template.find(selector).attr('src', product[key]);
-                break;
-            default:
-                $template.find(selector).text(product[key]);
-        }
-    });
-    return $template;
-}
-
-
-for (var i=0; i<Object.keys(data).length; i++){
-    var $productTemplate = $($('#productItem').html());
-    $(".grid-layout").append(makeProductItem($productTemplate, data[i]));
-}
+    for (var i=0; i<Object.keys(data).length; i++){
+        var $productTemplate = $($('#productItem').html());
+        $(".grid-layout").append(makeProductItem($productTemplate, data[i]));
+    }
 
 
     $(function(){
-  
         $("#cart-trigger").on('click', function () {
-              $("#cart-sidebar").addClass('show-sidebar');
-          });
-         
-          $("#cart-sidebar .remove").on('click', function () {
-              $("#cart-sidebar").removeClass('show-sidebar');
-          });
-   
-        $("#menu-toggle").on('click', function () {
-              $('.flexmenu').toggleClass('active');
+            $("#cart-sidebar").addClass('show-sidebar');
         });
-     
+         
+        $("#cart-sidebar .remove").on('click', function () {
+            $("#cart-sidebar").removeClass('show-sidebar');
+        });
+        $("#menu-toggle").on('click', function () {
+            $('.flexmenu').toggleClass('active');
+        });
         $("#catalog").on('click', function () {
-          $('.mega-menu').toggleClass('mega-active');
+            $('.mega-menu').toggleClass('mega-active');
         });
         $(".mega-menu .close").on('click', function () {
-          $('.mega-menu').removeClass('mega-active');
+            $('.mega-menu').removeClass('mega-active');
         });
-       
-      });
+    });
+     
  
-
-
-
+    $(".minus").click(function(e) {
+        var val = parseInt($(e.target).next().attr('value'));
+        $(this).next().attr('value', val-1);
+    });
     
-    // $(".minus").click(function(e) {
-    //     var val = parseInt($(e.target).next().attr('value'));
-    //     $(this).next().attr('value', val-1);
-    // });
-    
-    // $(".plus").click(function(e) {
-    //         var val = parseInt($(e.target).prev().attr('value'));
-    //         $(this).prev().attr('value', val+1);
-    // });
+    $(".plus").click(function(e) {
+        var val = parseInt($(e.target).prev().attr('value'));
+        $(this).prev().attr('value', val+1);
+    });
         
    
     // let plus = document.getElementsByClassName('plus');
@@ -257,17 +168,6 @@ for (var i=0; i<Object.keys(data).length; i++){
     // }
 
 
-    function createProduct(){
-        var article = document.createElement("article");
-        var div = document.createElement("div");
-        var p = document.createElement("p");
-        p.textContent = "Very Nice Cat";
-        div.appendChild(p);
-        article.setAttribute('class', "grid-item");
- 
-        article.appendChild(div);
-        document.querySelector('.grid-layout').appendChild(article);
-    }
 
     // var cartTest = document.getElementsByClassName('product-detail');
     //     for (let i=0; i<cartTest.length; i++ ){
@@ -497,27 +397,27 @@ for (var i=0; i<Object.keys(data).length; i++){
         console.log(al.lastIndexOf('z')); // выводит -1
 
 
-        let plus = document.getElementsByClassName('plus');
+        // let plus = document.getElementsByClassName('plus');
     
-        plus = Array.prototype.slice.call(plus); // теперь plus - массив
+        // plus = Array.prototype.slice.call(plus); // теперь plus - массив
       
-        plus.forEach(function(elem) {
-          elem.addEventListener('click', function() {
-              let val = parseInt(this.previousElementSibling.getAttribute('value'));
-              this.previousElementSibling.setAttribute('value', val+1);
-              });
-        });
+        // plus.forEach(function(elem) {
+        //   elem.addEventListener('click', function() {
+        //       let val = parseInt(this.previousElementSibling.getAttribute('value'));
+        //       this.previousElementSibling.setAttribute('value', val+1);
+        //       });
+        // });
 
-        let minus = document.getElementsByClassName('minus');
+        // let minus = document.getElementsByClassName('minus');
 
-        minus = Array.prototype.slice.call(minus); // теперь minus - массив
+        // minus = Array.prototype.slice.call(minus); // теперь minus - массив
 
-        minus.forEach(function(elem) {
-          elem.addEventListener('click', function() {
-              let val = parseInt(this.nextElementSibling.getAttribute('value'));
-              this.nextElementSibling.setAttribute('value', val-1);
-              });
-        });
+        // minus.forEach(function(elem) {
+        //   elem.addEventListener('click', function() {
+        //       let val = parseInt(this.nextElementSibling.getAttribute('value'));
+        //       this.nextElementSibling.setAttribute('value', val-1);
+        //       });
+        // });
 
 
         // $(".buy-now").each(function(index, element){
@@ -815,5 +715,9 @@ $(".add-to-cart").each(function(index, element){
             $(e.target).parents('.product').find('.icon').toggle();
         });
     });
-
 });
+
+console.log(document.documentElement.clientWidth);
+console.log(document.documentElement.clientHeight);
+console.log(window.innerWidth);
+console.log(window.innerHeight);

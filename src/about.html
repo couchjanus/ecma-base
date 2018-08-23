@@ -7,22 +7,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         <style>
-           body { padding: 30px; }
+         .red_border{
+            color: aquamarine;
+            background-color: black;
+            border: crimson solid 2px;
+        }
+        .show1{
+            display: none;
+            background-color: aquamarine;
+        }
+        .hide1 {
+            display: block;
+            background-color: aquamarine;
+        }
 
-          .navg li{
-              display: inline-block;
-          }
-          .navg li a {
-              text-decoration: none;
-              color: white;
-              background:red;
-              padding: 1em;
-          }
-        
         </style>
     </head>
     <body>
-        <nav class="nav-wrapper">
+      <nav class="nav-wrapper">
                 <label class='label' for="menu-trigger">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                 </label>
@@ -36,88 +38,253 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul> <!-- end nav -->			   	 
             </div> 
-        </nav> <!-- end nav-wrap --> 	
-        <hr>
+      </nav> <!-- end nav-wrap --> 	
+      <hr>
 
-        <section class="wrapper container special">
-       
-
-            <h1>Calc</h1>
-
-            <form>
-                <input type="text" id="res" value="">
-                <br>
-                <input type="button" value="0" id="b0">
-                <input type="button" value="1" id="b1">
-                <input type="button" value="2" id="b2">
-                <br>
-                <input type="button" value="3" id="b3">
-                <input type="button" value="4" id="b4">
-                <input type="button" value="5" id="b5">
-                <br>
-                <input type="button" value="6" id="b6">
-                <input type="button" value="7" id="b7">
-                <input type="button" value="8" id="b8">
-                <br>
-                <input type="button" value="9" id="b9">
-                <input type="button" value="+" id="plus">
-                <input type="button" value="=" id="equal">
-                </form>
-                <script type="text/javascript">
-                    var a, b;
-                    
-                    b2.onclick = function(){
-                     if (a===undefined){
-                        res.value = b2.value;
-                        a = parseInt(b2.value);
-                     }else{
-                        res.value += b2.value;
-                        b = parseInt(b2.value);
-                     }
-                    }
-                
-                    b3.onclick = function(){
-                     if (a===undefined){
-                        res.value = b3.value;
-                        a = parseInt(b3.value);
-                     }else{
-                        res.value += b3.value;
-                        b = parseInt(b3.value);
-                     }
-                    }
-                
-                    // b3.onclick = function(){
-                    //     res.value += b3.value;
-                    //     b = parseInt(b3.value);
-                    // }
-                
-                    plus.onclick = function(){
-                        res.value += plus.value;
-                
-                    }
-                    equal.onclick = function(){
-                        res.value = a+b;
-                        a = undefined;
-                        b = undefined;
-                    }
-                
-                </script>
-          
-        </section> <!-- end content-wrap -->
+    <section class="wrapper container special">
     
- <!-- Footer -->
- <footer>
-    <p class="copyright"> &copy; 2019 Janus Site</p>
-    <nav>
-        <!--brand icon-->
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-github-square"></i></a>
-        <a href="#"><i class="fab fa-youtube-square"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-    </nav>
-</footer>
+        <h1>DOM/BOM API</h1>
+    
+
+        <article class="page">
+            <h2 id="id1">Query Selector</h2>
+            <div>
+                Для часто используемых селекторов, таких как class, id или attribute мы можем использовать document.querySelector или document.querySelectorAll для замены. Разница такова:
+
+                <li>document.querySelector возвращает первый совпавший элемент</li>
+                <li>document.querySelectorAll возвращает все совпавшие элементы как список узлов (NodeList). Его можно конвертировать в массив, используя Array.prototype.slice.call(document.querySelectorAll(selector));</li>
+                <li>Если никакие элементы не совпадут, jQuery и document.querySelectorAll вернет [], document.querySelector вернет null.</li>
+            </div>
+
+        </article>    
+        <article class="page">
+            <h2 id="id2">Query by selector</h2>
+            <p>
+                <pre>
+                    // jQuery
+                    $('selector');
         
-     
+                    // Native
+                    document.querySelectorAll('selector');
+                </pre>
+                
+            </p>
+            
+        </article>    
+    
+        <article class="page">
+            <h2 id="id3">Запрос по классу</h2>
+
+            <p>
+                <pre>
+                // jQuery
+                $('.class');
+    
+                // Native
+                document.querySelectorAll('.class');
+    
+                // или
+                document.getElementsByClassName('class');
+            </pre>
+
+            
+            </p>
+                    
+        </article> 
+        <article class="page">
+                <h2 id="id4">Запрос по ID</h2>
+                <p>
+            <pre>
+    
+                // jQuery
+                $('#id');
+    
+                // Native
+                document.querySelector('#id');
+    
+                // или
+                document.getElementById('id');
+            </pre>                        
+                
+            </p>
+
+        </article>
+        <article class="page">
+                <h2 id="id5">Запрос по атрибуту</h2>
+                
+                <div>
+                    <pre>
+                        // jQuery
+                        $('a[target=_blank]');
+            
+                        // Native
+                        document.querySelectorAll('a[target=_blank]');
+                    </pre>
+                </div>
+
+        </article>  
+
+        <article class="page">
+                <h2 id="id6">Найти среди потомков</h2>
+                <p>
+                    <pre>
+                        // jQuery
+                        $el.find('li');
+            
+                        // Native
+                        el.querySelectorAll('li');    
+                    </pre>
+                </p>
+                
+        </article>  
+        <article class="page">
+                <h2 id="id7">Родственные элементы</h2>
+                <p>
+                <pre>
+                        // jQuery
+                        $el.siblings();
+                        
+                        // Native
+                        Array.prototype.filter.call(el.parentNode.children, (child) =>
+                          child !== el
+                        );
+                    </pre>                          
+                        
+                </p>
+                
+        </article>  
+        <article class="page">
+                <h2 id="id8">Предыдущие элементы</h2>
+                <p>
+                    <pre>
+                        
+                        
+                        // jQuery
+                        $el.prev();
+                        
+                        // Native
+                        el.previousElementSibling;
+                    </pre>
+                        
+                </p>
+                
+        </article>  
+        <article class="page">
+                <h2 id="id9">Следующие элементы</h2>
+                <p>
+                    <pre>
+                    // jQuery
+                    $el.next();
+
+                    // Native
+                    el.nextElementSibling;
+                    </pre>
+
+                </p>
+
+        </article>  
+        <article class="page">
+                <h2 id="id10">Ближайший</h2>
+                <p>
+                    Возвращает первый совпавший элемент по предоставленному селектору, обходя от текущего элементы до документа.
+                    
+                    <pre>
+                        // jQuery
+                        $el.closest(selector);
+                            
+                        // Native - только последние версии браузеров, без IE
+                        el.closest(selector);
+                            
+                            // Native - IE10+
+                            function closest(el, selector) {
+                              const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+                            
+                              while (el) {
+                                if (matchesSelector.call(el, selector)) {
+                                  return el;
+                                } else {
+                                  el = el.parentElement;
+                                }
+                              }
+                              return null;
+                        }
+                    </pre>
+
+                </p>
+
+        </article>  
+        <article class="page">
+                <h2 id="id11">Родители до</h2>
+                <p>
+                        Получить родителей каждого элемента в текущем результате совпавших элементов, но не включая элемент, совпавший с указанным селектором, узлом DOM'а, или объектом jQuery.
+                    <pre>
+                        
+                    // jQuery
+                    $el.parentsUntil(selector, filter);
+
+                    // Native
+                    function parentsUntil(el, selector, filter) {
+                    const result = [];
+                    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+
+                    // Совпадать начиная от родителя
+                    el = el.parentElement;
+                    while (el && !matchesSelector.call(el, selector)) {
+                        if (!filter) {
+                        result.push(el);
+                        } else {
+                        if (matchesSelector.call(el, filter)) {
+                            result.push(el);
+                        }
+                        }
+                        el = el.parentElement;
+                    }
+                    return result;
+                    }
+
+                    </pre>
+                </p>
+        </article> 
+        <article class="page">
+                <h2 id="id12">Форма</h2>
+                
+                <h3>
+                   Input/Textarea
+                </h3>    
+                    <pre>
+                        // jQuery
+                        $('#my-input').val();
+                        
+                        // Native
+                        document.querySelector('#my-input').value;
+                        
+                    </pre>
+                    <h3>
+                        Получить индекс e.currentTarget между .radio
+                    </h3>    
+                    <pre>
+                                 
+                        // jQuery
+                        $('.radio').index(e.currentTarget);
+                                 
+                        // Native
+                        Array.prototype.indexOf.call(document.querySelectorAll('.radio'), e.currentTarget);
+                    </pre>
+                
+        </article> 
+    </section> <!-- end content-wrap -->
+    
+    <!-- Footer -->
+    <footer>
+        <p class="copyright"> &copy; 2019 Janus Site</p>
+        <nav>
+            <!--brand icon-->
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-github-square"></i></a>
+            <a href="#"><i class="fab fa-youtube-square"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </nav>
+    </footer>
         
-    </body>
+  </body>
 </html>
