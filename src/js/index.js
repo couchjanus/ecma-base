@@ -681,20 +681,19 @@ $(".add-to-cart").each(function(index, element){
                     'width': '150px',
                     'z-index': '100'
                 })
-                .appendTo($('body'));
-                // .appendTo($('body'))
-                //     .animate({
-                //     'top': $('#cart-trigger').offset().top + 10,
-                //         'left': $('#cart-trigger').offset().left + 10,
-                //         'width': 75,
-                //         'height': 75
-                // }, 1000);
-                // imgClone.animate({
-                //     'width': 0,
-                //         'height': 0
-                // }, function () {
-                //     $(this).detach()
-                // });  
+                .appendTo($('body'))
+                    .animate({
+                    'top': $('#cart-trigger').offset().top + 10,
+                        'left': $('#cart-trigger').offset().left + 10,
+                        'width': 75,
+                        'height': 75
+                }, 1000);
+                imgClone.animate({
+                    'width': 0,
+                        'height': 0
+                }, function () {
+                    $(this).detach()
+                });  
 
             // console.log('imgClone: ', imgClone);
         }
@@ -721,3 +720,130 @@ console.log(document.documentElement.clientWidth);
 console.log(document.documentElement.clientHeight);
 console.log(window.innerWidth);
 console.log(window.innerHeight);
+
+
+$('.slide a').click(function () {
+    $('.slide.active').removeClass('active');
+    $(this).closest('.slide').addClass('active');
+    return false;
+});
+
+
+var duration = 20; // duration in seconds
+var fadeAmount = 0.3; // fade duration amount relative to the time the image is visible
+
+$(document).ready(function () {
+  var images = $("#slideshow img");
+  var numImages = images.length;
+  var durationMs = duration * 1000;
+  var imageTime = durationMs / numImages; // time the image is visible 
+  var fadeTime = imageTime * fadeAmount; // time for cross fading
+  var visibleTime = imageTime - imageTime * fadeAmount * 2; // time the image is visible with opacity == 1
+  var animDelay = visibleTime * (numImages - 1) + fadeTime * (numImages - 2); // animation delay/offset for a single image 
+
+  images.each(function (index, element) {
+    if (index != 0) {
+      $(element).css("opacity", "0");
+      setTimeout(function () {
+        doAnimationLoop(element, fadeTime, visibleTime, fadeTime, animDelay);
+      }, visibleTime * index + fadeTime * (index - 1));
+    } else {
+      setTimeout(function () {
+        $(element).animate({ opacity: 0 }, fadeTime, function () {
+          setTimeout(function () {
+            doAnimationLoop(element, fadeTime, visibleTime, fadeTime, animDelay);
+          }, animDelay);
+        });
+      }, visibleTime);
+    }
+  });
+});
+
+
+function doAnimationLoop(element, fadeInTime, visibleTime, fadeOutTime, pauseTime) {
+  fadeInOut(element, fadeInTime, visibleTime, fadeOutTime, function () {
+    setTimeout(function () {
+      doAnimationLoop(element, fadeInTime, visibleTime, fadeOutTime, pauseTime);
+    }, pauseTime);
+  });
+}
+
+function fadeInOut(element, fadeIn, visible, fadeOut, onComplete) {
+  return $(element).animate({ opacity: 1 }, fadeIn).delay(visible).animate({ opacity: 0 }, fadeOut, onComplete);
+}
+
+
+//
+
+    var width = 960;
+    var height = 538;
+    var numberOfBlinds = 20;
+    var margin = 2;
+    var color = '#000';
+    
+  
+    var container = $('#container');
+  
+    container.width(width).height(height);
+    var blindWidth = width / numberOfBlinds;
+  
+    var images = new Array();
+    $('ul li', container).each(function () {
+      images.push($(this));
+    });
+  
+    images[0].addClass('active');
+    var activeImage = 0;
+  
+    for (var i = 0; i < numberOfBlinds; i++) {
+        
+      var tempEl = $(document.createElement('span'));
+      var borders = calculateBorders();
+  
+      tempEl.css({
+        'left': i * blindWidth,
+        border: margin + 'px solid ' + color,
+        borderTop: borders.borderWidthTop + 'px solid ' + color,
+        borderBottom: borders.borderWidthBottom + 'px solid ' + color,
+        'height': height,
+        'width': blindWidth });
+  
+  
+      container.prepend(tempEl);
+    }
+    
+    setTimeout(animateBorders, 1000);
+
+  
+  function calculateBorders() {
+    var random = Math.floor(Math.random() * 9 + 1);
+    var gapHeight = 100;
+    var borderWidthTop = random / 10 * gapHeight;
+    var borderWidthBottom = gapHeight - borderWidthTop;
+  
+    return { borderWidthTop: borderWidthTop, borderWidthBottom: borderWidthBottom };
+  }
+  
+  function animateBorders() {
+    var changeOccuredOnce = false;
+    var blinds = $('span', container);
+    blinds.animate({
+      borderTopWidth: height / 2,
+      borderBottomWidth: height / 2 },
+    1000, function () {
+      if (!changeOccuredOnce) {
+        images[activeImage].removeClass('active');
+        activeImage = (activeImage + 1) % images.length;
+        images[activeImage].addClass('active');
+        setTimeout(animateBorders, 3000);
+        changeOccuredOnce = true;
+      }
+  
+      var borders = calculateBorders();
+  
+      $(this).delay(300).animate({
+        borderTopWidth: borders.borderWidthTop,
+        borderBottomWidth: borders.borderWidthBottom },
+      1000);
+    });
+  }

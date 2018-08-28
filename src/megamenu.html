@@ -1,310 +1,137 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello cart</title>
-    <script defer src="/fontawesome/js/fontawesome-all.js"></script>
-    
-    <style>
-         
-    </style>
-  </head>
+<!DOCTYPE HTML>
+<!-- comments -->
+<html>
+    <head>
+      <title>Peculiar Shopaholic</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      
+<style>
+.slides {
+  position: relative;
+}
+.slides .slide {
+  position: absolute;
+  top: 0;
+  width: calc(33% - 1em);
+  max-height: 3.5em;
+  margin: 0.5em;
+  padding: 1em;
+  background: #ad1f36;
+  color: white;
+  float: left;
+  overflow: hidden;
+  transition: max-height 0.25s       ease-in-out, width      0.25s 0.25s ease-in-out, left       0.25s 0.5s  ease-in-out, top        0.25s 0.75s ease-in-out;
+}
 
-  <body>
-    <nav class="nav-wrapper">
-      <label class='label' for="menu-toggle">
-              <i class="fa fa-bars" aria-hidden="true"></i>
-      </label>
-      <input type="checkbox" id="menu-toggle" /> 
-      <div class="row">    		            
-          <ul id="nav" class="nav mainmenu">
-              <li class="current"><a href="index.html">Home</a></li>
-              <li class="has-children" id="catalog"><a href="#">Catalog</a></li>
-              <li><a href="about.html">About</a></li>	
-              <li class="has-children"><a href="blog.html">Blog</a></li>	
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="#" id="cart-trigger"><i class="fas fa-shopping-cart"></i>&nbsp;Cart</a></li>
-          </ul> <!-- end nav -->			   	 
-      </div> 
-    </nav> <!-- end nav-wrap --> 	 
-<section class="wrapper container special" id="featured">
-   
-    <h1>Hello, Cart!</h1>        
-        
-    <div class="grid-layout">
-      <article class="grid-item">
-        <div class="product">
-          <p class="product-name">Very&nbsp;Nice&nbsp;Cat</p>
-          <div class="icon">
-            <div class="icon-background"></div>
-            <span class="shopping-cart">
-              <i class="fas fa-shopping-cart fa-2x"></i>
-            </span>
-          </div>
-          <div class="product-picture">
-            <img src="images/cat3.jpg" alt="Nice Cat" />
-          </div>
-          <div class="product-menu">
-            <div class="product-price">
-              $9.99
+.slides .slide:nth-child(1) {
+  left: 0%;
+}
+.slides .slide:nth-child(2) {
+  left: 33.3333%;
+}
+.slides .slide:nth-child(3) {
+  left: 66.6666%;
+}
+.slides .slide > a {
+  display: block;
+  padding-bottom: 1em;
+  font-family: 'Oswald';
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ec93a2;
+  transition: color 2s;
+}
+.slides .slide.active {
+  position: absolute;
+  top: 4.5em;
+  left: 0;
+  width: 100%;
+  max-height: 20em;
+  float: none;
+  transition: top        0.25s 1s    ease-in-out, left       0.25s 1.25s ease-in-out, width      0.25s 1.5s  ease-in-out, max-height 0.25s 1.75s ease-in-out;
+}
+.slides .slide.active a {
+  color: white;
+}
+
+.cf:before, .slides:before,
+.cf:after,
+.slides:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.cf:after, .slides:after {
+  clear: both;
+}
+
+
+</style>
+</head>
+
+<body>
+      <nav class="nav-wrapper">
+                <label class='label' for="menu-trigger">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                </label>
+                <input type="checkbox" id="menu-trigger" /> 
+            <div class="row">    		            
+                <ul id="nav" class="nav">
+                    <li class="current"><a href="index.html">Home</a></li>
+                    <li class="has-children"><a href="products.html">Catalog</a></li>
+                    <li><a href="about.html">About</a></li>	
+                    <li class="has-children"><a href="blog.html">Blog</a></li>	
+                    <li><a href="contact.html">Contact</a></li>
+                </ul> <!-- end nav -->			   	 
+            </div> 
+      </nav> <!-- end nav-wrap --> 	
+      <hr>
+
+    <section class="wrapper container special">
+        <article class="page">
+            <h2 id="id1">Slide Tabs</h2>
+            <div class="slides">
+                <div class="slide">
+                  <a href="#">The Lorem</a>
+                  <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus obcaecati velit autem tenetur doloribus perferendis esse odit animi quasi deserunt recusandae perspiciatis a sapiente aliquam qui libero dolor officiis assumenda.
+                  </div>
+                </div>
+                
+                <div class="slide">
+                  <a href="#">The Ipsum</a>
+                  <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse harum eius voluptas dicta. Vero tempore rerum itaque? Quidem nobis vel consectetur sit amet illo dicta veniam ab ut libero officia!
+                  </div>
+                </div>
+                
+                <div class="slide">
+                  <a href="#">The Dolor Sit Amet</a>
+                  <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat officiis repellat reprehenderit incidunt deserunt illum eum ipsa quod nihil eligendi hic delectus quaerat. Ad sint tempore cumque mollitia reiciendis!
+                  </div>
+                </div>
             </div>
-            <div class="buy-now">
-              Buy now!
-            </div>
-            <div class="product-detail">
-              Detail
-            </div>
+        </article>
+    </section> <!-- end content-wrap -->
     
-            <div class="how-many">
-              <div class="quantity-input">
-                <input class="minus btn" type="button" value="-">
-                <input class="input-text quantity text" value="3" size="4">
-                <input class="plus btn" type="button" value="+">
-              </div>
-            </div>
-            <div class="cancel">
-              Cancel
-            </div>
-            <div class="add-to-cart">
-              Add to Cart!
-            </div>
-          </div>
-        </div>
-        
-      </article>
-      <article class="grid-item">
-        <div class="product">
-            <p class="product-name">Very&nbsp;Nice&nbsp;Cat</p>
-            <div class="icon">
-              <div class="icon-background"></div>
-              <span class="shopping-cart">
-                <i class="fas fa-shopping-cart fa-2x"></i>
-              </span>
-            </div>
-            <div class="product-picture">
-              <img src="images/cat3.jpg" alt="Nice Cat" />
-            </div>
-            <div class="product-menu">
-              <div class="product-price">
-                $9.99
-              </div>
-              <div class="buy-now">
-                Buy now!
-              </div>
-              <div class="product-detail">
-                Detail
-              </div>
-      
-              <div class="how-many">
-                <div class="quantity-input">
-                  <input class="minus btn" type="button" value="-">
-                  <input class="input-text quantity text" value="3" size="4">
-                  <input class="plus btn" type="button" value="+">
-                </div>
-              </div>
-              <div class="cancel">
-                Cancel
-              </div>
-              <div class="add-to-cart">
-                Add to Cart!
-              </div>
-            </div>
-        </div>
-          
-      </article>
-      
-      <article class="grid-item">
-          <div class="product">
-              <p class="product-name">Very&nbsp;Nice&nbsp;Cat</p>
-              <div class="icon">
-                <div class="icon-background"></div>
-                <span class="shopping-cart">
-                  <i class="fas fa-shopping-cart fa-2x"></i>
-                </span>
-              </div>
-              <div class="product-picture">
-                <img src="images/cat3.jpg" alt="Nice Cat" />
-              </div>
-              <div class="product-menu">
-                <div class="product-price">
-                  $9.99
-                </div>
-                <div class="buy-now">
-                  Buy now!
-                </div>
-                <div class="product-detail">
-                  Detail
-                </div>
-        
-                <div class="how-many">
-                  <div class="quantity-input">
-                    <input class="minus btn" type="button" value="-">
-                    <input class="input-text quantity text" value="3" size="4">
-                    <input class="plus btn" type="button" value="+">
-                  </div>
-                </div>
-                <div class="cancel">
-                  Cancel
-                </div>
-                <div class="add-to-cart">
-                  Add to Cart!
-                </div>
-              </div>
-            </div>
-            
-      </article>
-      <article class="grid-item">
-        <div class="product">
-                <p class="product-name">Very&nbsp;Nice&nbsp;Cat</p>
-                <div class="icon">
-                  <div class="icon-background"></div>
-                  <span class="shopping-cart">
-                    <i class="fas fa-shopping-cart fa-2x"></i>
-                  </span>
-                </div>
-                <div class="product-picture">
-                  <img src="images/cat3.jpg" alt="Nice Cat" />
-                </div>
-                <div class="product-menu">
-                  <div class="product-price">
-                    $9.99
-                  </div>
-                  <div class="buy-now">
-                    Buy now!
-                  </div>
-                  <div class="product-detail">
-                    Detail
-                  </div>
-          
-                  <div class="how-many">
-                    <div class="quantity-input">
-                      <input class="minus btn" type="button" value="-">
-                      <input class="input-text quantity text" value="3" size="4">
-                      <input class="plus btn" type="button" value="+">
-                    </div>
-                  </div>
-                  <div class="cancel">
-                    Cancel
-                  </div>
-                  <div class="add-to-cart">
-                    Add to Cart!
-            </div>
-          </div>
-        </div>
-      </article>
-    
-    </div>            
-    </section>
-    <!-- Footer Area Start -->
-    <footer id="footer">
+    <!-- Footer -->
+    <footer>
+        <p class="copyright"> &copy; 2019 Janus Site</p>
+        <nav>
+            <!--brand icon-->
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-github-square"></i></a>
+            <a href="#"><i class="fab fa-youtube-square"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </nav>
     </footer>
-    <!-- Footer Area Stop -->
-    <div id="shadow-layer" class="shadow-layer"></div>
-    <!-- Aside Area Start -->
-    <aside id="cart-sidebar" class="cart">
-        <a href="" class="remove"><i class="fas fa-times fa-2x"></i></a>
         
-        <h2>Cart</h2>
-        <!-- cart-items start-->
-        <ul class="cart-items">
-            <li>
-                <span class="item-quantity">1x</span> <span class="item-name">Product Name</span>
-                <div class="item-price">$9.99</div>
-                <a href="#0" class="item-remove"></a>
-            </li>
-        </ul> 
-        <!-- cart-items end -->
-    
-        <div class="cart-total">
-            <p>Total <span>$39.96</span></p>
-        </div> <!-- cart-total -->
-    
-        <a href="#" class="checkout-button">Checkout</a>
-    </aside> <!-- cart end -->
-    <!-- Aside Area end -->
-
-
-    <div class="mega-menu">
-        <div class="mega-menu-top">
-            <div class="mega-search">
-                <label for="mega-search">Search</label>
-                <input type="search" id="mega-search" placeholder="Search" />
-            </div>
-            <div class="close">
-                <span>&#10006;</span> 
-            </div>
-        </div>
-        <h3>Catalog</h3>
-        <ul class="nav themes">
-            <li><a href="#"> Mice</a></li>
-            <li><a href="#"> Cats</a></li>
-            <li><a href="#"> Dogs</a></li>
-            <li><a href="#"> Rabbits</a></li>
-            <li><a href="#"> Crocodiles</a></li>
-            <li><a href="#"> Chicks</a></li>
-            <li><a href="#"> Dinosaurs</a></li>
-            <li><a href="#"> Skunks</a></li>
-            <li><a href="#"> Rats</a></li>
-            <li><a href="#"> Crows</a></li>
-        </ul>
-        <footer>
-            <div class="logo-footer">  
-              <img src="images/logo.png">
-            </div>
-            <ul class="nav footer">
-                <li>Contact Us</li>
-                <li>About Us</li>
-                <li>Privacy Policy</li>
-            </ul>
-        </footer>
-    </div>
-    
-    <script>
-      
-        // function toggle_panel(panel, background_layer) {
-        //         if (panel.classList.contains('show-sidebar')) {
-        //             panel.classList.remove('show-sidebar');
-        //             background_layer.classList.remove('is-visible');
-        //         } else {
-        //             panel.classList.add('show-sidebar');
-        //             background_layer.classList.add('is-visible');
-        //         }
-        // }
-
-
-        // function ready() {
-            
-        //     document.getElementById("cart-trigger").addEventListener('click', function () {
-        //         toggle_panel(document.getElementById("cart-sidebar"), document.getElementById("shadow-layer"));
-        //     });
-
-        //     document.querySelector("#cart-sidebar .remove").addEventListener('click', function () {
-        //         toggle_panel(document.getElementById("cart-sidebar"), document.getElementById("shadow-layer"));
-        //         }
-        //     );
-
-        //     var hamburgerToggle = document.querySelector('#menu-trigger');
-    
-        //     hamburgerToggle.addEventListener('click', function(e){
-        //         e.preventDefault();
-        //         document.querySelector('.mainmenu').classList.toggle('active');
-        //     });
-
-        //     let mega = document.querySelector('.mega-menu');
-
-        //     catalog.addEventListener('click', function () {
-        //         mega.classList.toggle('mega-active');
-        //     });
-            
-        //     document.querySelector('.mega-menu .close').addEventListener('click', function () {
-        //         mega.classList.remove('mega-active');
-        //     });
-        // }
-
-        // document.addEventListener("DOMContentLoaded", ready);
-
-      </script>
   </body>
 </html>

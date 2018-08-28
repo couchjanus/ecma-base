@@ -120,8 +120,12 @@ const config = {
       filename: './test.html'
     }),
     new HtmlWebpackPlugin({
-      template: './src/product-item.html',
-      filename: './product-item.html'
+      template: './src/carousel1.html',
+      filename: './carousel1.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/carousel2.html',
+      filename: './carousel2.html'
     }),
     new HtmlWebpackPlugin({
       template: './src/shadow.html',
