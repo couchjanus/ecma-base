@@ -176,6 +176,7 @@ import { data } from './data';
     //         createProduct();
     //         });         
     //     }
+
     $(".product-detail").each(function(index, element){
             $(element).on('click', function () {
                 
@@ -773,7 +774,34 @@ function fadeInOut(element, fadeIn, visible, fadeOut, onComplete) {
 }
 
 
+$(".accordeon .link").bind("click", function () {
+    $(".accordeon .link").removeClass("hovered");
+    $(this).addClass("hovered");
+});
+
+
+$(document).ready(function () {
+    gallery();
+});
+
+$(window).resize(function () {
+    gallery();
+});
+
+function gallery() {
+    setTimeout(function () {
+      var winwid = $(window).width(),
+      winhei = $(window).height(),
+      gswid = $('.gallery-slide').outerWidth(),
+      gshei = $('.gallery-slide').outerHeight();
+      $('.gallery-slide').outerHeight(gswid);
+      $('#gallery').css('font-size', gswid * 0.09);
+      $('.gallery-caption').css('line-height', gshei / 2 + 'px');
+    }, 500);
+}
+
 //
+
 
     var width = 960;
     var height = 538;
@@ -847,3 +875,6 @@ function fadeInOut(element, fadeIn, visible, fadeOut, onComplete) {
       1000);
     });
   }
+
+ 
+   
